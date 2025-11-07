@@ -18,7 +18,7 @@ echo 7.(AOT) Compilation All App      8.(AOT) ReCompilation All App
 echo 9.Disabling V-Sync               10.Optimizing Touch Response
 echo 11.Disabling Anti-Aliasing       12.GPU and Hardware Acceleration
 echo 13.Auto Default Optimization     14.Refresh Rate Optimization
-echo 15.Fix Bug Render Engine in App
+echo 15.Fix Bug Render Engine in App  16.Bloatware [Uninstall,Disable,Reinstall]
 echo.
 
 :menu
@@ -35,6 +35,8 @@ set "touch_timer_ms=250"
 set "skia_renderer=2"
 set "soc=N"
 set "Tuning=N"
+set "Bloatware=Q"
+set "Packare_Name=Q"
 
 set /p menu="Enter Num: "
 
@@ -417,6 +419,44 @@ if "%menu%"=="7" (
     ) else (
         echo [Error] Enter F or P Only!
         goto aot_compile_mode
+    )
+)
+
+if "%menu%"=="16" (
+    :Debloat
+    set /p Bloatware="Uninstall = U ,Disable = D ,Reinstall = R : "
+    if /i "!Bloatware!"=="Q" (
+            goto menu
+    )
+    if /i "!Bloatware!"=="U" (
+        :uninstall
+        set /p Packare_Name="Packare Name [Ex: com.instagram.android]: "
+        adb shell pm uninstall -k --user 0 !Packare_Name!
+        echo Uninstall [!Packare_Name!] [OK]
+        if /i "!Packare_Name!"=="Q" (
+            goto Debloat
+        )
+        goto uninstall
+    ) else if /i "!Bloatware!"=="D" (
+        :disable
+        set /p Packare_Name="Packare Name [Ex: com.instagram.android]: "
+        adb shell pm disable-user --user 0 !Packare_Name!
+        echo Disable [!Packare_Name!] [OK]
+        if /i "!Packare_Name!"=="Q" (
+            goto debloat
+        )
+        goto disable
+    ) else if /i "!Bloatware!"=="R" (
+        :reinstall
+        set /p Packare_Name="Packare Name [Ex: com.instagram.android]: "
+        adb shell pm install-existing !Packare_Name!
+        echo Reinstall [!Packare_Name!] [OK]
+        if /i "!Packare_Name!"=="Q" (
+            goto debloat
+        )
+        goto reinstall
+    ) else (
+        goto Debloat
     )
 )
 
