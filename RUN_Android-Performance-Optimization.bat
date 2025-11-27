@@ -359,7 +359,7 @@ if "%menu%"=="3" (
     timeout /t 1 >nul
     echo Forcing crash: System UI
     adb shell am crash com.android.systemui
-    echo [OK] Apps to use Vulkan Done...
+    echo [OK] Reloading apps to use Renderer Option [!skia_renderer!] Done
 )
 
 if "%menu%"=="15" (
