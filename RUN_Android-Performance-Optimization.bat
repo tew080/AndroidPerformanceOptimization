@@ -396,6 +396,7 @@ if "%menu%"=="6" (
     adb shell cmd device_config put package_native_code optimizable_apps true
     echo Background Dex Optimization....
     adb shell cmd package bg-dexopt-job
+        adb shell pm trim-caches 999999999999
     echo [OK] Background Dex Optimization
 )
 
