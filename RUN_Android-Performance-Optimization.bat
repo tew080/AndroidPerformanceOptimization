@@ -410,11 +410,13 @@ if "%menu%"=="7" (
         echo AOT FULL Compilation All App....
         adb shell cmd package compile -m speed -a
         adb shell cmd package compile -m speed -a --secondary-dex
+	adb shell pm trim-caches 999999999999
         echo [OK] AOT FULL Compilation All App
     ) else if /i "!aot_compile_mode!"=="P" (
         echo AOT Profile Compilation All App....
         adb shell cmd package compile -m speed-profile -a
         adb shell cmd package compile -m speed-profile -a --secondary-dex
+	adb shell pm trim-caches 999999999999
         echo [OK] AOT Profile Compilation All App
     ) else (
         echo [Error] Enter F or P Only!
@@ -471,11 +473,13 @@ if "%menu%"=="8" (
         echo AOT FULL Compilation All App....
         adb shell cmd package compile -m speed -f -a
         adb shell cmd package compile -m speed -f -a --secondary-dex
+	adb shell pm trim-caches 999999999999
         echo [OK] AOT FULL Compilation All App
     ) else if /i "!aot_re_compile_mode!"=="P" (
         echo AOT Profile Compilation All App....
         adb shell cmd package compile -m speed-profile -f -a
         adb shell cmd package compile -m speed-profile -f -a --secondary-dex
+	adb shell pm trim-caches 999999999999
         echo [OK] AOT Profile Compilation All App
     ) else (
         echo [Error] Enter F or P Only!
@@ -548,6 +552,7 @@ if "%menu%"=="13" (
     echo AOT Profile Compilation All App....
     adb shell cmd package compile -m speed-profile -f -a
     adb shell cmd package compile -m speed-profile -f -a --secondary-dex
+    adb shell pm trim-caches 999999999999
     echo [OK] AOT Profile Compilation All App
     echo.
     echo ========================================
